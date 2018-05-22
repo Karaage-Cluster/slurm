@@ -1,10 +1,6 @@
 # Start with a Python image.
 FROM python:3.6-stretch as slurm
-MAINTAINER brian@linuxpenguins.xyz
-
-# Slurm configuration
-ARG SLURM_VER=17.02.7
-ARG SLURM_URL=https://www.schedmd.com/downloads/latest/slurm-17.02.7.tar.bz2
+LABEL maintainer="Brian May <brian@linuxpenguins.xyz>"
 
 # Install OS dependencies
 RUN apt-get update \
@@ -12,16 +8,18 @@ RUN apt-get update \
     bzip2 make gcc libmunge-dev liblua5.3-dev \
   && rm -rf /var/lib/apt/lists/*
 
+# Slurm configuration
+ARG SLURM_VER=17.11.6
+ARG SLURM_URL=https://download.schedmd.com/slurm/slurm-17.11.6.tar.bz2
+
 # Build and install slurm
 RUN curl -fsL ${SLURM_URL} | tar xfj - -C /opt/ && \
     cd /opt/slurm-${SLURM_VER}/ && \
-    ./configure && make && make install
-VOLUME ["/etc/munge", "/usr/local/etc", "/var/lib/munge", "/var/log/munge"]
-
+    ./configure --sysconfdir=/etc/slurm && make && make install
 
 # Start with a Python image.
 FROM python:3.6-stretch
-MAINTAINER brian@linuxpenguins.xyz
+LABEL maintainer="Brian May <brian@linuxpenguins.xyz>"
 
 # Install OS dependencies
 RUN apt-get update \
@@ -30,4 +28,8 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 COPY --from=slurm /usr/local /usr/local
-VOLUME ["/etc/munge", "/usr/local/etc", "/var/lib/munge", "/var/log/munge"]
+COPY start_slurm /usr/local/sbin
+
+ENV MUNGE_KEY_FILE ""
+
+VOLUME ["/etc/slurm", "/var/log"]

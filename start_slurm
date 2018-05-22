@@ -1,0 +1,19 @@
+#!/bin/sh
+
+if getent passwd munge > /dev/null && [ -n "$MUNGE_KEY_FILE" ]
+then
+    cp "$MUNGE_KEY_FILE" /etc/munge/munge.key
+    chown munge:munge /etc/munge/munge.key
+
+    mkdir -p /var/lib/munge
+    chown munge:munge -R /var/lib/munge
+
+    mkdir -p /var/log/munge
+    chown munge:munge -R /var/log/munge
+
+    echo "www-data ALL=(slurm) NOPASSWD: /usr/local/bin/sacct" >> /etc/sudoers
+    echo "www-data ALL=(slurm) NOPASSWD: /usr/local/bin/sacctmgr" >> /etc/sudoers
+
+    service munge start
+fi
+
