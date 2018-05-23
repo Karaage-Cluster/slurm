@@ -9,6 +9,8 @@ then
     mkdir -p /var/lib/munge
     chown munge:munge -R /var/lib/munge
 
+    chown root:root /var/log
+
     mkdir -p /var/log/munge
     chown munge:munge -R /var/log/munge
 
