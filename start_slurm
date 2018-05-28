@@ -4,7 +4,7 @@ set -e
 if getent passwd munge > /dev/null && [ -n "$MUNGE_KEY_FILE" ]
 then
     cp "$MUNGE_KEY_FILE" /etc/munge/munge.key
-    chown munge:munge /etc/munge/munge.key
+    chown munge:munge -R /etc/munge
 
     mkdir -p /var/lib/munge
     chown munge:munge -R /var/lib/munge
