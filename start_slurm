@@ -18,5 +18,7 @@ then
     echo "www-data ALL=(slurm) NOPASSWD: /usr/local/bin/sacctmgr" >> /etc/sudoers
 
     service munge start
+
+    adduser --system slurm
 fi
 
