@@ -6,6 +6,6 @@
 echo "Building slurm 17.02"
 docker build \
     --tag "$DOCKER_REPO:17.02" \
-    --build-arg="SLURM_VER=17.02.10" \
-    --build-arg="SLURM_URL=https://www.schedmd.com/downloads/latest/slurm-17.02.10.tar.bz2" \
+    --build-arg="SLURM_VER=17.02.11" \
+    --build-arg="SLURM_URL=https://www.schedmd.com/downloads/latest/slurm-17.02.11.tar.bz2" \
     .
