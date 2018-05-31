@@ -31,5 +31,6 @@ COPY --from=slurm /usr/local /usr/local
 COPY start_slurm /usr/local/sbin
 
 ENV MUNGE_KEY_FILE ""
+ENV SLURM_UID ""
 
 VOLUME ["/etc/slurm", "/var/log"]

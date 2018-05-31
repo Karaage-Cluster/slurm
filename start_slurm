@@ -19,6 +19,11 @@ then
 
     service munge start
 
-    adduser --system slurm
+    if [ -z "SLURM_UID" ]
+    then
+        adduser --system slurm
+    else
+        adduser --system --uid="$SLURM_UID" slurm
+    fi
 fi
 
