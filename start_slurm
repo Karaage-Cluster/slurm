@@ -19,7 +19,7 @@ then
 
     service munge start
 
-    if [ -z "SLURM_UID" ]
+    if [ -z "$SLURM_UID" ]
     then
         adduser --system slurm
     else
