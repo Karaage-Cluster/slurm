@@ -9,8 +9,8 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 # Slurm configuration
-ARG SLURM_VER=17.11.6
-ARG SLURM_URL=https://download.schedmd.com/slurm/slurm-17.11.6.tar.bz2
+ARG SLURM_VER=20.02.4
+ARG SLURM_URL=https://download.schedmd.com/slurm/slurm-20.02.4.tar.bz2
 
 # Build and install slurm
 RUN curl -fsL ${SLURM_URL} | tar xfj - -C /opt/ && \
@@ -29,6 +29,8 @@ RUN apt-get update \
 
 COPY --from=slurm /usr/local /usr/local
 COPY start_slurm /usr/local/sbin
+
+RUN ldd /usr/local/bin/sacctmgr
 
 ENV MUNGE_KEY_FILE ""
 ENV SLURM_UID ""

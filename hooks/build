@@ -3,9 +3,9 @@
 # File needs to be called /hooks/build relative to the Dockerfile.
 # $IMAGE_NAME var is injected into the build so the tag is correct.
 
-echo "Building slurm 17.02"
+echo "Building slurm 20.02"
 docker build \
-    --tag "$DOCKER_REPO:17.02" \
-    --build-arg="SLURM_VER=17.02.11" \
-    --build-arg="SLURM_URL=https://www.schedmd.com/downloads/latest/slurm-17.02.11.tar.bz2" \
+    --tag "$DOCKER_REPO:20.02" \
+    --build-arg="SLURM_VER=20.02.4" \
+    --build-arg="SLURM_URL=https://www.schedmd.com/downloads/latest/slurm-20.02.4.tar.bz2" \
     .
