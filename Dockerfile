@@ -3,7 +3,7 @@ ARG SLURM_VER=20.11.8
 ARG SLURM_URL=https://download.schedmd.com/slurm/slurm-20.11.8.tar.bz2
 
 # Start with a Python image.
-FROM python:3.8-buster as slurm
+FROM python:3.9-bullseye as slurm
 LABEL maintainer="Brian May <brian@linuxpenguins.xyz>"
 
 # Install OS dependencies
@@ -22,7 +22,7 @@ RUN curl -fsL ${SLURM_URL} | tar xfj - -C /opt/ && \
     ./configure --sysconfdir=/etc/slurm && make && make install
 
 # Start with a Python image.
-FROM python:3.8-buster
+FROM python:3.8-bullseye
 LABEL maintainer="Brian May <brian@linuxpenguins.xyz>"
 
 # Install OS dependencies
