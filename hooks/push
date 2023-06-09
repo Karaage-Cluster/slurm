@@ -1,3 +1,3 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-docker push "$DOCKER_REPO:20.11"
+docker push "$DOCKER_REPO:23.02"
