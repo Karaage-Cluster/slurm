@@ -2,13 +2,6 @@
 
 DOCKER_REPO=docker.io/brianmay/slurm
 
-echo "Building slurm 21.08"
-docker build \
-    --tag "$DOCKER_REPO:21.08" \
-    --build-arg="SLURM_VER=21.08.8" \
-    --build-arg="SLURM_URL=https://www.schedmd.com/downloads/latest/slurm-21.08.8.tar.bz2" \
-    .
-
 echo "Building slurm 23.02"
 docker build \
     --tag "$DOCKER_REPO:23.02" \
