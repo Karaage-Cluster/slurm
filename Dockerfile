@@ -1,6 +1,6 @@
 # Slurm configuration
-ARG SLURM_VER=20.11.8
-ARG SLURM_URL=https://download.schedmd.com/slurm/slurm-20.11.8.tar.bz2
+ARG SLURM_VER=24.05.5
+ARG SLURM_URL=https://download.schedmd.com/slurm/slurm-24.05.5.tar.bz2
 
 # Start with a Python image.
 FROM python:3.10-bullseye as slurm
