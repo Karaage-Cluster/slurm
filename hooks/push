@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-DOCKER_REPO=docker.io/brianmay/slurm
-docker push "$DOCKER_REPO:23.02"
